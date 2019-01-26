@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chessboard</title>
+</head>
+
+<body>
+    <script>
+        function chessboard(size) {
+
+            let html = '<div class="chessboard">\n';
+            for (let row = 0; row < size; row++) {
+                html += '  <div>\n';
+                let color = (row % 2 === 0) ? 'black' : 'white';
+                for (let col = 0; col < size; col++) {
+                    html += `    <span class="${color}"></span>\n`;
+                    color = (color === 'white') ? 'black' : 'white';
+                }
+                html += '  </div>\n';
+            }
+            return html + '</div>';
+        }
+
+        let css = document.createElement("style");
+        css.innerHTML =
+            `
+  body { background: #CCC; }
+  .chessboard { display: inline-block; }
+  .black, .white { 
+     width:50px; height:50px;
+     display: inline-block; }
+  .black { background: black; }
+  .white { background: white; }
+`;
+        document.getElementsByTagName("head")[0].appendChild(css);
+        document.body.innerHTML = chessboard(3);
+    </script>
+
+
+    <!-- <form>
+        num1: <input type="text" name="num1" /> <br>
+        num2: <input type="text" name="num2" /> <br>
+        sum: <input type="text" name="sum" /> <br>
+        <input type="button" value="Sum" onclick="calcSum()" />
+    </form>
+
+    <script>
+        function calcSum() {
+            let num1 = document.getElementsByName('num1')[0].value;
+            let num2 = document.getElementsByName('num2')[0].value;
+            let sum = +num1 + +num2;
+            //   let sum = Number(num1) + Number(num2); - other way to parse into Number;
+            // let sum = num1 + num2; - if one is String it will concatenate;
+            document.getElementsByName('sum')[0].value = sum;
+        }
+
+        for (let i = 1; i <= 20; i += 2) {
+            document.write(`<p>${i}</p>`);
+        }
+    </script> -->
+</body>
+
+</html>
