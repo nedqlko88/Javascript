@@ -143,7 +143,8 @@ function system(input) {
 
         systems.get(system).get(component).push(subcomponent);
     }
-    console.log(systems.get(system));
+
+    
 
 }
 

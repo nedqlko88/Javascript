@@ -1,0 +1,88 @@
+<html>
+
+    <head>
+        <title>Demo</title>
+    </head>
+
+    <body style="background: grey">
+
+        <ul id="items">
+            <li>First item!</li>
+            <li>Second item!</li>
+            <li>Third item!</li>
+        </ul>
+        <textarea id="result">
+    </textarea>
+        <br>
+        <button onclick="extractText()">Extract Text</button>
+        <script>
+            function extractText() {
+            let listItems = [];
+            let listNode = document.querySelectorAll('ul > li');
+            //'ul#items li' or 'items' or '#items' - diff selectors
+            let textArea = document.getElementById('result');
+
+            listNode.forEach(
+                (li) => listItems.push(li.textContent)
+            );
+
+            textArea.value = listItems.join('\n');
+        }
+    </script>
+
+        <table border="1">
+            <tr>
+                <th>Name</th>
+                <th>Town</th>
+            </tr>
+            <tr>
+                <td>Eve</td>
+                <td>Sofia</td>
+            </tr>
+            <tr>
+                <td>Nick</td>
+                <td>Varna</td>
+            </tr>
+            <tr>
+                <td>Didi</td>
+                <td>Ruse</td>
+            </tr>
+            <tr>
+                <td>Tedy</td>
+                <td>Varna</td>
+            </tr>
+        </table>
+        <button onclick="colorizeRows()">Colorize</button>
+        <script>
+            function colorizeRows() {
+        let tableRows = document.querySelectorAll('table tr');
+        // takes all tr  - 'table tr'
+        for (let row = 0; row < tableRows.length; row++) {
+             if (row % 2 === 0) {
+                 tableRows[row].style.backgroundColor = 'red';
+             }           
+        }
+    }
+    </script>
+        <br>
+        <input type="text" id="time" style="border:3px solid blue;
+text-align:center; font-size:2em;" disabled="true" />
+        <script>
+            // window.onload = countdown(600);
+
+            function countdown(startTime) {
+                let time = startTime;
+                let box = document.getElementById('time');
+                
+                setInterval(decrement, 1000);
+
+                function decrement() {
+                    time--;
+                    box.value = Math.trunc(time / 60) +
+                        ':' + ("0" + (time % 60)).slice(-2);
+                }
+            }
+        </script>
+    </body>
+
+</html>
