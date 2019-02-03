@@ -1,0 +1,94 @@
+<html>
+
+    <head>
+        <title>Demo</title>
+        <style>
+            .hidden 
+            {
+                display: none;
+            } 
+        </style>
+    </head>
+
+    <body>
+
+        <h2 id="loading" class="hidden">Loading</h2>
+
+        <script>
+            let counter = 0;
+
+
+            document.getElementById("loading").style.display = "block";
+
+            setTimeout(() => {
+                for (let i =0; i < 1000; i++) {
+                    for (let j =0; j < 700; j++) {
+                        for (let k =0; k < 300; k++) {
+                            counter += 1;
+                        }
+                    }
+                }    
+            alert(counter);
+            },0);
+         
+
+       
+            </script>
+
+
+        <header id="pesho" class="blue big down">
+            <div id="gosho" class="bid down"></div>
+            <div id="gosho" class="bid down"></div>
+        </header>
+        <script>
+            // in header pesho will have the text divdiv;
+            // document.getElementById("pesho").textContent="<div></div>";
+
+            // the old child of pesho will disappear but it will appear 
+            // new empty div tag (it parses the text to html tag)
+            document.getElementById("pesho").innerHTML = "<div></div>";
+        </script>
+
+        <h1>List of Items</h1>
+        <ul id="myList">
+            <li>First <a href="#" class="deleteButton">Delete</a></li>
+            <li>Second <a href="#" class="deleteButton">Delete</a></li>
+        </ul>
+
+        <input id="itemName" type="text" />
+        <input id="addItem" type="button" value="Add" />
+        <script>
+            window.addEventListener("load", () => {
+                //events (mouseover)
+                document.getElementById("addItem")
+                    .addEventListener("click", addItem);
+
+                const deleteButtons = document.getElementsByClassName("deleteButton");
+
+                for (let delButton of deleteButtons) {
+                    delButton.addEventListener("click", deleteItem);
+                }
+
+                // document.getElementById("addItem")
+                // .removeEventListener("click", addItem);
+
+                function addItem() {
+                    const itemName = document.getElementById("itemName").value;
+                    const elem = document.createElement("li");
+
+                    elem.innerHTML = itemName + ' <a href="#" class="deleteButton">Delete</a>';
+
+                    elem.childNodes[1].addEventListener("click", deleteItem);
+
+                    document.getElementById("myList").appendChild(elem);
+                    document.getElementById("itemName").value = "";
+                }
+
+                function deleteItem(evt) {
+                    document.getElementById("myList").removeChild(evt.target.parentNode);
+                }
+            });
+        </script>
+    </body>
+
+</html>
